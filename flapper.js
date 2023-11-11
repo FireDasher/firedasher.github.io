@@ -1,8 +1,8 @@
 //flapper.js :)
 var canvas = document.getElementById("game");
 var ctx = canvas.getContext("2d");
-canvas.width = window.innerWidth - 20;
-canvas.height = window.innerHeight - 20;
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 var flappy = new Image();
 flappy.src = "https://www.pngmart.com/files/12/Flappy-Bird-Logo-Transparent-Background.png";
 flapSound = new Audio("https://www.myinstants.com/media/sounds/sfx_wing.mp3");
