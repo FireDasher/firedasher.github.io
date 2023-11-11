@@ -4,13 +4,14 @@ resize();
 let x = canvas.width/2;
 let y = canvas.height/2;
 tick();
+const e = window.event;
 
 function tick() {
   ctx.clearRect(0,0,canvas.width,canvas.height);
   ctx.fillRect(x-5,y-5,10,10);
 
-  if (false) {
-    
+  if (e.shiftKey) {
+    y += 5;
   }
 
   window.requestAnimationFrame(tick);
