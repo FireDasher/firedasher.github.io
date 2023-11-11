@@ -4,16 +4,29 @@ resize();
 let x = canvas.width/2;
 let y = canvas.height/2;
 tick();
-let e = window.event;
+//key detecter
+var pressedKeys = {};
+window.onkeyup = function(e) { pressedKeys[e.keyCode] = false; }
+window.onkeydown = function(e) { pressedKeys[e.keyCode] = true; }
 
+//tick
 function tick() {
   ctx.clearRect(0,0,canvas.width,canvas.height);
   ctx.fillRect(x-5,y-5,10,10);
 
   //controls
   e = window.event;
-  if (e.shiftKey) {
+  if (pressedKeys[38]) {
     y += 5;
+  }
+  if (pressedKeys[40]) {
+    y -= 5;
+  }
+  if (pressedKeys[39]) {
+    x += 5;
+  }
+  if (pressedKeys[37]) {
+    x -= 5;
   }
 
   //other
