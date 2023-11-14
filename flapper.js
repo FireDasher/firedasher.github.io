@@ -17,6 +17,11 @@ var score = 0;
 var canchangescore = true;
 var m = canvas.width / 2;
 
+window.onresize = function() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+
 window.onbeforeunload = function(e) {
   return "you are an idiot! 😃😃😃";
 }
