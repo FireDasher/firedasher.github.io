@@ -8,12 +8,11 @@ body {
 
 .body {
     text-align: center;
-    border: 1px solid black;
 }
 
 .body textarea {
     border-radius: 10px;
-    background-color: rgb(0, 0, 0);
+    background-color: black;
     color: white;
 }
 
