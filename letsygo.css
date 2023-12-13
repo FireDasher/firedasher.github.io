@@ -36,6 +36,7 @@ body {
     border-radius: 5px;
     border-color: blue;
     transition-duration: 0.1s;
+    cursor: pointer;
 }
 
 .topbar button:hover {
