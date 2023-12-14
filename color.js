@@ -19,6 +19,12 @@ function reload() {
     ctx.drawImage(image,0,0);
     effects();
     }
+
+    if (option === 't' || 'it') {
+      canvas.style.backgroundColor = 'white';
+    } else {
+      canvas.style.backgroundColor = 'black';
+    }
 }
 function effects() {
     let data;
@@ -26,16 +32,20 @@ function effects() {
         for(let y = 0; y < canvas.height; y += 1) {
             data = ctx.getImageData(x,y,1,1).data;
 
-            if (option == 'i') {
+            if (option === 'i') {
                 ctx.fillStyle = 'rgba('+ (255 - data[0]) +','+ (255 - data[1]) +','+(255 - data[2]) +','+ data[3] +')';
-            } if (option == 'cc') {
+            } if (option === 'cc') {
                 let gray = (data[0]+data[1]+data[2])/3;
                 let rgb = hexToRgb(color.value);
                 ctx.fillStyle = 'rgba('+ (rgb.r * gray/255) +','+ (rgb.g * gray/255) +','+(rgb.b * gray/255) +','+ data[3] +')';
-            } if (option == 't') {
+            } if (option === 't') {
                 let gray = (data[0]+data[1]+data[2])/3;
-                ctx.fillStyle = 'rgba('+ 0 +','+ 0 +','+ 0 +','+ (1-( gray/255 )) +')';
+                ctx.fillStyle = 'rgba(0,0,0,' + (1-( gray/255 )) + ')';
                 //document.writeln('rgba('+ data[0] +','+ data[1] +','+ data[2] +','+ gray +')');
+            }
+            if (option === 'it') {
+              let gray = (data[0]+data[1]+data[2])/3;
+                ctx.fillStyle = 'rgba(0,0,0,'+ ( gray/255 ) +')';
             }
             
             
