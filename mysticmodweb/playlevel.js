@@ -3,19 +3,20 @@ const code = params.get('code');
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
 const titleElement = document.getElementById('title');
-let grid = [];
-let width, height;
-let title;
 const numKey = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ@$%&+=?^/#".split('');
 const numKey2 = ".!',({)}".split('');
 const numKey2Value = [72, 288, 216, 144, 2880, 28800, 288000,  2880000];
 let scrollx = 0, scrolly = 0;
-let d;
-let di;
 let zoom = 100;
 //let debugtile;
 //let mi;
-decode(code);
+const lvldata = decode(code);
+let grid = lvldata.grid;
+let width = lvldata.width, height = lvldata.height;
+let title = lvldata.title;
+if (title) {
+    titleElement.innerHTML = title;
+}
 
 // images
 const cells = ['air', 'generator', 'mover', 'CWspinner', 'CCWspinner', 'push', 'slide', 'enemy', 'trash', 'immobile',
@@ -72,63 +73,6 @@ function tick() {
 }
 tick();
 
-function decode(dcode) {
-    const s = dcode.split(';');
-    d = s[3];
-    if (s[0] != 'MP1') {
-        alert('Invalid Code! Only MP1 codes are accepted');
-        return false;
-    }
-    width = lengththing2(s[1]);
-    height = lengththing2(s[2]);
-    title = s[4];
-    if (title) {
-        titleElement.innerHTML = title;
-    }
-    di = 0;
-
-    //alert(lengththing(1));
-
-    while (di < d.length) {
-        let letter2add;
-        if (d.charAt(di) == '.') {
-            di++;
-            letter2add = '.' + d.charAt(di);
-        } else {
-            letter2add = d.charAt(di);
-        }
-        if (d.charAt(di) == '-') {
-            if(d.charAt(di + 1) == ':') {
-                const length = lengththing(2) + 1;
-                for (let i2 = 0; i2 < length; i2++) {
-                    grid.push('');
-                }
-                di += 3;
-            } else {
-                grid.push('');
-                di++;
-            }
-        } else if(d.charAt(di + 1) == ':') {
-            const length = lengththing(2) + 1;
-            for (let i2 = 0; i2 < length; i2++) {
-                grid.push(letter2add);
-            }
-            di += 3;
-        } else if(d.charAt(di) == ':') {
-            const length = lengththing(1);
-            for (let i2 = 0; i2 < length; i2++) {
-                grid.push('');
-            }
-            di += 2;
-        } else {
-            grid.push(letter2add);
-            di++;
-        }
-    }
-
-    console.log(grid);
-}
-
 function num(sus) {
     return numKey.indexOf(sus);
 }
@@ -179,42 +123,6 @@ function rotateTileAmount(id) {
     } else if(keyUp.includes(id)) {
         return Math.PI * 1.5;
     }
-}
-
-function lengththing(dif) {
-    let letter = d.charAt(di + dif);
-    let length = 0;
-    while (numKey2.includes(letter)) {
-        length += numKey2Value[numKey2.indexOf(letter)];
-        di++;
-        letter = d.charAt(di + dif);
-        if (di > d.length) {
-            console.log('Overload error at the lengththing function :(');
-            return false;
-        }
-    }
-    length += num(letter);
-    console.log(length);
-    return length;
-}
-
-function lengththing2(input) {
-    let i = 0;
-    input = input.toString();
-    let letter = input.charAt(i);
-    let length = 0;
-    while (numKey2.includes(letter)) {
-        length += numKey2Value[numKey2.indexOf(letter)];
-        i++;
-        letter = input.charAt(i);
-        if (i > input.length) {
-            console.log('Overload error at the lengththing2 function :(');
-            return false;
-        }
-    }
-    length += num(letter);
-    console.log(length);
-    return length;
 }
 
 /*document.onmousemove = function(e) {
