@@ -24,6 +24,9 @@ function decode(dcode) {
 
     while (di < d.length) {
         let letter2add;
+        if (d.charAt(di) == '[' || d.charAt(di) == ']') {
+            di++;
+        }
         if (d.charAt(di) == '.') {
             di++;
             letter2add = '.' + d.charAt(di);
