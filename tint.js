@@ -4,15 +4,7 @@ const input = document.querySelector('#file');
 const incolor = document.querySelector('#color');
 let image;
 
-function stuff() {
-    ctx.clearRect(0, 0, c.width, c.height);
-    ctx.drawImage(image, 0, 0);
-    ctx.globalCompositeOperation = 'multiply';
-    ctx.fillStyle = incolor.value;
-    ctx.fillRect(0, 0, c.width, c.height);
-    
-    requestAnimationFrame(stuff);
-}
+incolor.oninput = render;
 
 input.onchange = function () {
     const file = input.files[0];
@@ -22,6 +14,15 @@ input.onchange = function () {
     image.onload = function () {
         c.width = image.naturalWidth;
         c.height = image.naturalHeight;
-        stuff();
+        render();
     };
+}
+
+function render() {
+    if (!image) {return};
+    ctx.clearRect(0, 0, c.width, c.height);
+    ctx.drawImage(image, 0, 0);
+    ctx.globalCompositeOperation = 'multiply';
+    ctx.fillStyle = incolor.value;
+    ctx.fillRect(0, 0, c.width, c.height);
 }
