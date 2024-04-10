@@ -1,7 +1,38 @@
-let d;
-let di;
-
 function decode(dcode) {
+    let d;
+    let di;
+    function lengththing(dif) {
+        let letter = d.charAt(di + dif);
+        let length = 0;
+        while (numKey2.includes(letter)) {
+            length += numKey2Value[numKey2.indexOf(letter)];
+            di++;
+            letter = d.charAt(di + dif);
+            if (di > d.length) {
+                console.log('Overload error at the lengththing function :(');
+                return false;
+            }
+        }
+        length += num(letter);
+        return length;
+    }
+    function lengththing2(input) {
+        let i = 0;
+        input = input.toString();
+        let letter = input.charAt(i);
+        let length = 0;
+        while (numKey2.includes(letter)) {
+            length += numKey2Value[numKey2.indexOf(letter)];
+            i++;
+            letter = input.charAt(i);
+            if (i > input.length) {
+                console.log('Overload error at the lengththing2 function :(');
+                return false;
+            }
+        }
+        length += num(letter);
+        return length;
+    }
     let grid = [];
     let width = 0;
     let height = 0;
@@ -15,13 +46,8 @@ function decode(dcode) {
     width = lengththing2(s[1]);
     height = lengththing2(s[2]);
     title = s[4];
-    /*if (title) {
-        titleElement.innerHTML = title;
-    }*/
     di = 0;
-
-    //alert(lengththing(1));
-
+    
     while (di < d.length) {
         let letter2add;
         if (d.charAt(di) == '[' || d.charAt(di) == ']') {
@@ -68,41 +94,4 @@ function decode(dcode) {
         title: title,
         grid: grid
     };
-    //console.log(grid);
-}
-
-function lengththing(dif) {
-    let letter = d.charAt(di + dif);
-    let length = 0;
-    while (numKey2.includes(letter)) {
-        length += numKey2Value[numKey2.indexOf(letter)];
-        di++;
-        letter = d.charAt(di + dif);
-        if (di > d.length) {
-            console.log('Overload error at the lengththing function :(');
-            return false;
-        }
-    }
-    length += num(letter);
-    //console.log(length);
-    return length;
-}
-
-function lengththing2(input) {
-    let i = 0;
-    input = input.toString();
-    let letter = input.charAt(i);
-    let length = 0;
-    while (numKey2.includes(letter)) {
-        length += numKey2Value[numKey2.indexOf(letter)];
-        i++;
-        letter = input.charAt(i);
-        if (i > input.length) {
-            console.log('Overload error at the lengththing2 function :(');
-            return false;
-        }
-    }
-    length += num(letter);
-    //console.log(length);
-    return length;
 }
