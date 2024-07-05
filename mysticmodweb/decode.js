@@ -1,4 +1,42 @@
+const cells = ['air', 'generator', 'mover', 'CWspinner', 'CCWspinner', 'push', 'slide', 'enemy', 'trash', 'immobile',
+'converter', 'nudge', 'fixed_spinner', 'flipper', 'fall', 'directional', 'teleporter', 'puller', 'void',
+'global_converter', 'counter',
+'player', 'pac_man', 'input_generator', 'input_enemy', 'denier',
+'present', 'random_spinner', 'strange'];
+
 function decode(dcode) {
+    const numKey = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ@$%&+=?^/#".split('');
+    const numKey2 = ".!',({)}".split('');
+    const numKey2Value = [72, 288, 216, 144, 2880, 28800, 288000,  2880000];
+    function num(sus) {
+        return numKey.indexOf(sus);
+    }
+    function list(list) {
+        let value = [];
+        for (let i = 0; i < list.length; i++) {
+            if (list[i].charAt(0) == '.') {
+                let letter = list[i].charAt(1);
+                value.push( '.' + numKey[numKey.indexOf(letter) + 1] );
+            } else {
+                value.push( numKey[numKey.indexOf(list[i]) + 1] );
+            }
+        }
+        return value;
+    }
+    const keyRight = ['', '0', 'c', '4', '8', 'k', 'g', 's', 'w', 'o',
+    'U', 'A', '.g', '.k', '.c', '?', 'Y', '%', '.w',
+    '.A', '.E',
+    'E', 'I', '.4', '.0',
+    '.8', '.I',
+    'M', 'Q', '.M'];
+    const keyDown = list(keyRight);
+    const keyLeft = list(keyDown);
+    const keyUp = list(keyLeft);
+    function tile(e){return keyRight.includes(e)?cells[keyRight.indexOf(e)]:keyDown.includes(e)?cells[keyDown.indexOf(e)]:keyLeft.includes(e)?cells[keyLeft.indexOf(e)]:keyUp.includes(e)?cells[keyUp.indexOf(e)]:undefined}
+    function rotateTileAmount(e){return keyRight.includes(e)?0:keyDown.includes(e)?Math.PI/2:keyLeft.includes(e)?Math.PI:keyUp.includes(e)?Math.PI*1.5:undefined}
+    function getTile(e) {return tile(e)+":"+rotateTileAmount(e)}
+
+    const air = getTile('');
     let d;
     let di;
     function lengththing(dif) {
@@ -63,27 +101,27 @@ function decode(dcode) {
             if(d.charAt(di + 1) == ':') {
                 const length = lengththing(2) + 1;
                 for (let i2 = 0; i2 < length; i2++) {
-                    grid.push('');
+                    grid.push(air);
                 }
                 di += 3;
             } else {
-                grid.push('');
+                grid.push(air);
                 di++;
             }
         } else if(d.charAt(di + 1) == ':') {
             const length = lengththing(2) + 1;
             for (let i2 = 0; i2 < length; i2++) {
-                grid.push(letter2add);
+                grid.push(getTile(letter2add));
             }
             di += 3;
         } else if(d.charAt(di) == ':') {
             const length = lengththing(1);
             for (let i2 = 0; i2 < length; i2++) {
-                grid.push('');
+                grid.push(air);
             }
             di += 2;
         } else {
-            grid.push(letter2add);
+            grid.push(getTile(letter2add));
             di++;
         }
     }
