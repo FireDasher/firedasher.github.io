@@ -33,7 +33,7 @@ function decode(dcode) {
     const keyLeft = list(keyDown);
     const keyUp = list(keyLeft);
     function tile(e){return keyRight.includes(e)?cells[keyRight.indexOf(e)]:keyDown.includes(e)?cells[keyDown.indexOf(e)]:keyLeft.includes(e)?cells[keyLeft.indexOf(e)]:keyUp.includes(e)?cells[keyUp.indexOf(e)]:undefined}
-    function rotateTileAmount(e){return keyRight.includes(e)?0:keyDown.includes(e)?Math.PI/2:keyLeft.includes(e)?Math.PI:keyUp.includes(e)?Math.PI*1.5:undefined}
+    function rotateTileAmount(e){return keyRight.includes(e)?0:keyDown.includes(e)?0.5:keyLeft.includes(e)?1:keyUp.includes(e)?1.5:undefined}
     function getTile(e) {return tile(e)+":"+rotateTileAmount(e)}
 
     const air = getTile('');
