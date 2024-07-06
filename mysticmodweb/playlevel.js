@@ -4,7 +4,7 @@ const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
 const titleElement = document.getElementById('title');
 let scrollx = 0, scrolly = 0;
-let zoom = 100;
+let zoom = 1;
 //let debugtile;
 //let mi;
 const lvldata = decode(code);
@@ -22,8 +22,6 @@ function resize() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 }
-
-
 
 // images
 let images = [];
@@ -43,7 +41,7 @@ function tileImg(e) {
     return tNameImg(e.split(':')[0]);
 }
 function tDir(e) {
-    return e.split(':')[1];
+    return e.split(':')[1] * Math.PI;
 }
 
 /*document.onmousemove = function(e) {
@@ -61,9 +59,9 @@ function render() {
         for (let x = 0; x < width; x++) {
             if (tileImg(grid[i]) != undefined) {
                 ctx.save();
-                ctx.translate(((x * 32 - scrollx) * zoom / 100) + (1 - zoom / 100) * (canvas.width / 2), ((y * -32 + scrolly) * zoom / 100) + (1 - zoom / 100) * (canvas.height / 2) );
+                ctx.translate(((x * 32 - scrollx) * zoom) + (1 - zoom) * (canvas.width / 2), ((y * -32 + scrolly) * zoom) + (1 - zoom) * (canvas.height / 2) );
                 ctx.rotate( tDir( grid[i] ) );
-                ctx.drawImage( tileImg(grid[i]), -16 * (zoom / 100), -16 * (zoom / 100), 32 * (zoom / 100), 32 * (zoom / 100));
+                ctx.drawImage( tileImg(grid[i]), -16 * zoom, -16 * zoom, 32 * zoom, 32 * zoom);
                 ctx.restore();
             }
             i++;
@@ -81,16 +79,17 @@ tick();
 
 document.onwheel = function(e) {
     if (e.ctrlKey || e.metaKey) {
-        if (zoom < 1) {
-            zoom += e.deltaY * 0.1;
+        if (zoom < 0.01) {
+            zoom += e.deltaY * 0.001;
         } else {
-            zoom += e.deltaY * (zoom / 100);
+            zoom += e.deltaY * zoom * 0.01;
         }
+        console.log(e.deltaY, zoom);
         if (zoom < 0) {
             zoom = 0;
         }
-        if (zoom > 400) {
-            zoom = 400;
+        if (zoom > 10) {
+            zoom = 10;
         }
     } else {
         scrollx += e.deltaX;
@@ -100,6 +99,6 @@ document.onwheel = function(e) {
 
 document.onkeydown = function (e) {
     if (e.key == 'z') {
-        zoom = 100;
+        zoom = 1;
     }
 }
