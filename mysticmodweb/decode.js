@@ -5,6 +5,12 @@ const cells = ['air', 'generator', 'mover', 'CWspinner', 'CCWspinner', 'push', '
 'present', 'random_spinner', 'strange'];
 
 function decode(dcode) {
+    const s = dcode.split(';');
+    const d = s[3];
+    if (s[0] != 'MP1') {
+        alert('Invalid Code! Only MP1 codes are accepted');
+        return null;
+    }
     const numKey = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ@$%&+=?^/#".split('');
     const numKey2 = ".!',({)}".split('');
     const numKey2Value = [72, 288, 216, 144, 2880, 28800, 288000,  2880000];
@@ -37,8 +43,7 @@ function decode(dcode) {
     function getTile(e) {return tile(e)+":"+rotateTileAmount(e)}
 
     const air = getTile('');
-    let d;
-    let di;
+    let di = 0;
     function lengththing(dif) {
         let letter = d.charAt(di + dif);
         let length = 0;
@@ -48,7 +53,7 @@ function decode(dcode) {
             letter = d.charAt(di + dif);
             if (di > d.length) {
                 console.log('Overload error at the lengththing function :(');
-                return false;
+                return 0;
             }
         }
         length += num(letter);
@@ -65,26 +70,16 @@ function decode(dcode) {
             letter = input.charAt(i);
             if (i > input.length) {
                 console.log('Overload error at the lengththing2 function :(');
-                return false;
+                return 0;
             }
         }
         length += num(letter);
         return length;
     }
     let grid = [];
-    let width = 0;
-    let height = 0;
-    let title = "";
-    const s = dcode.split(';');
-    d = s[3];
-    if (s[0] != 'MP1') {
-        alert('Invalid Code! Only MP1 codes are accepted');
-        return false;
-    }
-    width = lengththing2(s[1]);
-    height = lengththing2(s[2]);
-    title = s[4];
-    di = 0;
+    const width = lengththing2(s[1]);
+    const height = lengththing2(s[2]);
+    const title = s[4];
     
     while (di < d.length) {
         let letter2add;
