@@ -17,6 +17,11 @@
 </head>
 <body>
     <h1>DiscoDash</h1>
-    <button onclick="document.body.innerHTML += '<p>woah you paid!!!</p>'">Press to pay the level 5 gyatt rizz</button>
+    <button id="thebutton">Press to pay the level 5 gyatt rizz</button>
+    <script>
+        document.body.querySelector('#thebutton').onclick = ()=>{
+            document.body.innerHTML += '<p>woah you paid!!!</p>';
+        };
+    </script>
 </body>
 </html>
