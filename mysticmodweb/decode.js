@@ -1,7 +1,7 @@
 const cells = ['air', 'generator', 'mover', 'CWspinner', 'CCWspinner', 'push', 'slide', 'enemy', 'trash', 'immobile',
 'converter', 'nudge', 'fixed_spinner', 'flipper', 'fall', 'directional', 'teleporter', 'puller', 'void',
-'global_converter', 'counter',
-'player', 'pac_man', 'input_generator', 'input_enemy', 'denier',
+'global_converter', 'counter', 'speed',
+'player', 'pac_man', 'input_generator', 'input_mover', 'input_enemy', 'denier',
 'present', 'random_spinner', 'strange'];
 
 function decode(dcode) {
@@ -20,7 +20,9 @@ function decode(dcode) {
     function list(list) {
         let value = [];
         for (let i = 0; i < list.length; i++) {
-            if (list[i].charAt(0) == '.') {
+            if (list[i] == '') {
+                value.push('');
+            } else if (list[i].charAt(0) == '.') {
                 let letter = list[i].charAt(1);
                 value.push( '.' + numKey[numKey.indexOf(letter) + 1] );
             } else {
@@ -31,9 +33,8 @@ function decode(dcode) {
     }
     const keyRight = ['', '0', 'c', '4', '8', 'k', 'g', 's', 'w', 'o',
     'U', 'A', '.g', '.k', '.c', '?', 'Y', '%', '.w',
-    '.A', '.E',
-    'E', 'I', '.4', '.0',
-    '.8', '.I',
+    '.A', '.E', '.s',
+    'E', 'I', '.4', '.0', '.8', '.I',
     'M', 'Q', '.M'];
     const keyDown = list(keyRight);
     const keyLeft = list(keyDown);
@@ -52,7 +53,7 @@ function decode(dcode) {
             di++;
             letter = d.charAt(di + dif);
             if (di > d.length) {
-                console.log('Overload error at the lengththing function :(');
+                console.error('Overload error at the lengththing function :(');
                 return 0;
             }
         }
@@ -69,7 +70,7 @@ function decode(dcode) {
             i++;
             letter = input.charAt(i);
             if (i > input.length) {
-                console.log('Overload error at the lengththing2 function :(');
+                console.error('Overload error at the lengththing2 function :(');
                 return 0;
             }
         }
