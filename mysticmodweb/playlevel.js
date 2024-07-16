@@ -5,8 +5,10 @@ const ctx = canvas.getContext('2d');
 const titleElement = document.getElementById('title');
 let scrollx = 0, scrolly = 0;
 let zoom = 1;
-//let debugtile;
-//let mi;
+
+/*let debugtile;
+let mi;*/
+
 const lvldata = decode(code);
 let grid = lvldata.grid;
 let width = lvldata.width, height = lvldata.height;
@@ -44,12 +46,9 @@ function tDir(e) {
     return e.split(':')[1] * Math.PI;
 }
 
-/*document.onmousemove = function(e) {
-    const ix = Math.round((e.clientX + scrollx) / 32);
-    const iy = (((canvas.height - e.clientY) + scrolly) / 32);
-    mi = iy; //+ (iy * width);
-    debugtile = grid[mi];
-}*/
+function lerp(a, b, t) {
+    return a * t + b * (1 - t);
+}
 
 function render() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -59,7 +58,7 @@ function render() {
         for (let x = 0; x < width; x++) {
             if (tileImg(grid[i]) != undefined) {
                 ctx.save();
-                ctx.translate(((x * 32 - scrollx) * zoom) + (1 - zoom) * (canvas.width / 2), ((y * -32 + scrolly) * zoom) + (1 - zoom) * (canvas.height / 2) );
+                ctx.translate(lerp(x * 32 - scrollx, canvas.width / 2, zoom), lerp(y * -32 + scrolly, canvas.height / 2, zoom) );
                 ctx.rotate( tDir( grid[i] ) );
                 ctx.drawImage( tileImg(grid[i]), -16 * zoom, -16 * zoom, 32 * zoom, 32 * zoom);
                 ctx.restore();
@@ -67,8 +66,8 @@ function render() {
             i++;
         }
     }
-    //ctx.fillStyle = 'white';
-    //ctx.fillText(debugtile + ',' + mi, 10, 10);
+    /*ctx.fillStyle = 'white';
+    ctx.fillText(debugtile + ',' + mi, 10, 10);*/
 }
 
 function tick() {
@@ -84,7 +83,6 @@ document.onwheel = function(e) {
         } else {
             zoom += e.deltaY * zoom * 0.01;
         }
-        console.log(e.deltaY, zoom);
         if (zoom < 0) {
             zoom = 0;
         }
@@ -102,3 +100,10 @@ document.onkeydown = function (e) {
         zoom = 1;
     }
 }
+
+/*document.onmousemove = function(e) {
+    const ix = Math.round((e.clientX + scrollx) / 32);
+    const iy = Math.round(((- e.clientY) + scrolly) / 32);
+    mi = ix + iy * width;
+    debugtile = grid[mi];
+}*/
