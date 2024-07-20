@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>MM+Web Music</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <style>
+        @font-face {
+            font-family: pixel;
+            src: url(ui/pixelmix.ttf);
+        }
+
+        h2, p {
+            color: white;
+            font-family: pixel;
+        }
+        body {
+            background-color: black;
+            text-align: center;
+            margin: 0;
+        }
+        .mscbtn {
+            image-rendering: pixelated;
+            background-image: url(ui/pixel_button.png);
+            background-size: 100%;
+            margin-top: calc(50vh - 150px);
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Why is this a different tab? (you might ask)</h2>
+    <p>It's because HTML / JS doesn't allow audio to play between different HTML files.</p>
+    <img src="ui/music.png" class="mscbtn">
+    <p id="playing">Playing: Nothing</p>
+    <script>
+        const musics = [new Audio('sounds/og.wav'), new Audio('sounds/Remix1.mp3'), new Audio('sounds/remix.wav'), new Audio('sounds/z_and_x.wav'), new Audio('sounds/scattered-cells.wav'), new Audio('sounds/scattedcells2.wav')];
+        const musicsnames = ['Original', 'Remix 1', 'Remix 2', 'Z and X', 'Scattered Cells', 'Scattered Cells 2'];
+        let playing = musics[0];
+        const playingtxt = document.querySelector('#playing');
+        document.querySelector('.mscbtn').onclick = ()=>{
+            playing.pause();
+            const toplay = Math.round(Math.random() * musics.length);
+            playing = musics[toplay];
+            playingtxt.textContent = 'Playing: ' + musicsnames[toplay];
+            playing.currentTime = 0;
+            playing.loop = true;
+            playing.play();
+        }
+    </script>
+</body>
+</html>
