@@ -1,52 +1,35 @@
 body {
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-    margin: 0;
-    padding: 0;
     background-color: black;
     color: white;
-}
-
-.body {
     text-align: center;
+    font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    margin: 0;
 }
-
-.body textarea {
+.app img {
+    border: 2px solid white;
+    box-shadow: 0 0 40px 5px white;
     border-radius: 10px;
-    background-color: black;
-    color: white;
-}
-
-.topbar {
-    padding: 0 15px;
-    background-color: cornflowerblue;
-}
-
-.topbar * {
-    display: inline-block;
-    margin: 10px 5px;
-}
-
-.body a {
-    color: cyan;
-}
-
-.topbar button {
-    color: blue;
-    background-color: cyan;
-    border-radius: 5px;
-    border-color: blue;
     cursor: pointer;
+    width: 300px;
+    height: 150px;
+    display: inline-block;
+    transition: transform ease-out 0.2s;
+    margin: 50px;
 }
-
-.anim {
-    transition-duration: 0.2s;
+.app img:hover, .social img:hover {
+    transform: scale(110%);
 }
-
-.anim:hover {
-    transform: scale(1.1) ;
+.app img:active, .social img:active {
+    transform: scale(120%);
 }
-
-.topbar h4 a {
-    color: white;
-    text-decoration: none;
+.social img {
+    border: 2px solid white;
+    box-shadow: 0 0 20px 5px white;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 64px;
+    height: 64px;
+    display: inline-block;
+    transition: transform ease-out 0.2s;
+    margin: 20px;
 }
