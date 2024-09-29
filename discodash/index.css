@@ -1,0 +1,144 @@
+@font-face {
+  font-family: comfortaa;
+  src: url(comfortaa.woff2) format('woff2');
+}
+@keyframes raindbow {
+    0% {background-color: #ff0000;}
+    10% {background-color: #ff9a00;}
+    20% {background-color: #d0de21;}
+    30% {background-color: #4fdc4a;}
+    40% {background-color: #3fdad8;}
+    50% {background-color: #2fc9e2;}
+    60% {background-color: #1c7fee;}
+    70% {background-color: #5f15f2;}
+    80% {background-color: #ba0cf8;}
+    90% {background-color: #fb07d9;}
+    100% {background-color: #ff0000;}
+}
+body {
+    overflow: hidden;
+    background-color: red;
+    background-image: url(bg.png);
+    background-blend-mode: multiply;
+    background-position-y: 100vh;
+    animation: raindbow 20s infinite;
+}
+.title {
+    text-align: center;
+    font-family: comfortaa, sans-serif;
+    color: white;
+    font-weight: 700;
+    font-size: 50px;
+    margin: 50px 0;
+}
+.maintitle {
+    font-size: 200px;
+    margin: 75px 0;
+}
+.play {
+    position: fixed;
+    left: calc(50vw - 150px);
+    top: calc(50vh - 50px);
+    width: 300px;
+    height: auto;
+}
+.button {
+    transition: scale 0.5s cubic-bezier(0.5, 1.6, 0.4, 0.8);
+}
+.button:hover {
+    scale: 120%;
+}
+.button:active {
+    scale: 150%;
+}
+.menu {
+    display: none;
+}
+.levelscreen {
+    display: none;
+}
+.back {
+    width: 80px;
+    height: auto;
+    position: fixed;
+    left: 20px;
+    top: 20px;
+}
+.levelslist {
+    width: 80vw;
+    height: calc(80vh - 100px);
+    position: absolute;
+    left: 10vw;
+    top: calc(10vh + 100px);
+    outline: 10px solid white;
+    border-radius: 10px;
+    background-color: #00000080;
+    overflow-y: scroll;
+}
+.levelslist::-webkit-scrollbar {
+    display: none;
+}
+.level {
+    font-family: comfortaa;
+    color: white;
+    border-bottom: 10px solid white;
+    width: 100%;
+    height: 100px;
+    margin: 0;
+    background-color: transparent;
+    transition: background-color 0.25s linear;
+}
+.level:hover {
+    background-color: #FFFFFF80;
+}
+.level > h1 {
+    margin: 0 20px;
+    font-size: 50px;
+}
+.new {
+    width: 96px;
+    height: auto;
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+}
+.input {
+    background-color: #0040FF;
+    border: none;
+    outline: 5px solid white;
+    border-radius: 10px;
+    color: white;
+    font-family: comfortaa;
+    text-align: center;
+}
+.lvltitle {
+    font-size: 50px;
+    width: 1000px;
+    height: 80px;
+    position: fixed;
+    left: calc(50vw - 500px);
+    top: 20px;
+}
+.lvldesc {
+    font-size: 20px;
+    width: 1000px;
+    padding: 20px 0;
+    position: fixed;
+    left: calc(50vw - 500px);
+    top: 150px;
+    vertical-align: middle;
+}
+.delete {
+    width: 96px;
+    height: auto;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+}
+.clone {
+    width: 96px;
+    height: auto;
+    position: fixed;
+    top: 136px;
+    right: 20px;
+}

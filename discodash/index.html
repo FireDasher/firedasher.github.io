@@ -1,60 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DiscoDash</title>
-    <style>
-        @font-face {
-          font-family: comfortaa;
-          src: url(comfortaa.woff2) format('woff2');
-        }
-        @keyframes raindbow {
-            0% {background-color: #ff0000;}
-            10% {background-color: #ff9a00;}
-            20% {background-color: #d0de21;}
-            30% {background-color: #4fdc4a;}
-            40% {background-color: #3fdad8;}
-            50% {background-color: #2fc9e2;}
-            60% {background-color: #1c7fee;}
-            70% {background-color: #5f15f2;}
-            80% {background-color: #ba0cf8;}
-            90% {background-color: #fb07d9;}
-            100% {background-color: #ff0000;}
-        }
-        body {
-            overflow: hidden;
-            background-color: red;
-            background-image: url(bg.png);
-            background-blend-mode: multiply;
-            background-position-y: 100vh;
-            animation: raindbow 20s infinite;
-        }
-        .title {
-            text-align: center;
-            font-family: comfortaa, sans-serif;
-            color: white;
-            font-weight: 700;
-            font-size: 200px;
-            margin: 75px 0;
-        }
-        .button {
-            transition: scale 0.5s cubic-bezier(0.5, 1.6, 0.4, 0.8);
-            position: fixed;
-            left: calc(50vw - 150px);
-            top: calc(50vh - 50px);
-        }
-        .button:hover {
-            scale: 120%;
-        }
-        .button:active {
-            scale: 1000%;
-        }
-    </style>
+    <link rel="stylesheet" href="index.css">
 </head>
 <body>
-    <h1 class="title">DiscoDash</h1>
-    <img src="play.png" width="300px" height="300px" class="button" draggable="false">
-    <script>
-        console.log('%cUr so skibidi, so fanum tax!!!', "background: black; color: red; font-size: 100px");
-    </script>
+    <div class="home">
+        <h1 class="maintitle title">DiscoDash</h1>
+        <img src="ui/play.png" class="play button" draggable="false">
+    </div>
+    <div class="menu">
+        <img src="ui/back1.png" class="lvlsback back button" draggable="false">
+        <h1 class="title">Levels</h1>
+        <div class="levelslist"></div>
+        <img src="ui/new.png" class="new button" draggable="false">
+    </div>
+    <div class="levelscreen">
+        <img src="ui/back1.png" class="lvlback back button" draggable="false">
+        <img src="ui/delete.png" class="delete button" draggable="false">
+        <img src="ui/clone.png" class="clone button" draggable="false">
+        <input type="text" class="lvltitle input">
+        <textarea class="lvldesc input" rows="3"></textarea>
+    </div>
+    <script src="menu.js"></script>
 </body>
 </html>
