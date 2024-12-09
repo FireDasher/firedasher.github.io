@@ -5,24 +5,35 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
     margin: 0;
 }
+.applist {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+img {
+    user-drag: none;
+    -webkit-user-drag: none;
+}
 .app img {
     border: 2px solid white;
     box-shadow: 0 0 40px 5px white;
     border-radius: 10px;
     cursor: pointer;
+    display: inline-block;
     width: 300px;
     height: 150px;
-    display: inline-block;
-    transition: transform ease-out 0.2s;
     margin: 50px;
+    transition: transform ease-out 0.2s;
 }
-.app img:hover, .social img:hover {
-    transform: scale(110%);
+.app, .link {
+    img:hover {
+        transform: scale(110%);
+    }
+    img:active {
+        transform: scale(120%);
+    }
 }
-.app img:active, .social img:active {
-    transform: scale(120%);
-}
-.social img {
+.link img {
     border: 2px solid white;
     box-shadow: 0 0 20px 5px white;
     border-radius: 10px;
