@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iOS Bookmark Appe Creator</title>
+    <style>
+        body {
+            background-color: #0d1117;
+            color: white;
+            font-family: system-ui, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    (all feilds are optional) Input your options, then click open page, then add the page to your home screen.<br>
+    Title: <input type="text" id="title"><br>
+    Icon URL: <input type="text" id="icon"><br>
+    Content: <input type="text" id="content"><br>
+    <button id="theopenpagebutton">Open page</button>
+    <script>
+        /** @returns {Element} */ function $(q){return document.querySelector(q);}
+        $("#theopenpagebutton").addEventListener("click", ()=>{
+            const params = new URLSearchParams();
+            const title = $("#title").value;
+            const icon = $("#icon").value;
+            const content = $("#content").value;
+            if (title !== "") params.set("title", title);
+            if (icon !== "") params.set("icon", icon);
+            if (content !== "") params.set("content", content);
+            const url = "./app.html?" + params.toString();
+            open(url);
+        });
+        </script>
+</body>
+</html>
