@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/jpeg" href="appimgs/amogus.jpeg" />
+    <title>Four Zero Four</title>
+    <style>
+        body {
+            background-color: #0d1117;
+            color: white;
+            font-family: system-ui, sans-serif;
+            text-align: center;
+        }
+        #duck {
+            position: fixed;
+            box-shadow: inset 0px 0px 0px 10px white;
+        }
+    </style>
+</head>
+<body>
+    <h1>404</h1>
+    <img src="appimgs/duck.gif" alt="duck.gif" id="duck">
+    <script>
+        class vec2 {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+            }
+        }
+
+        const duck = document.getElementById("duck");
+        const startDir = Math.random()*Math.PI*2;
+        let position = new vec2(innerWidth/4, innerHeight/4);
+        let dir = new vec2(Math.cos(startDir), Math.sin(startDir));
+        let speed = 10;
+        function isTouchingEdge(element) {
+            const rect = element.getBoundingClientRect();
+            const windowWidth = innerWidth || document.documentElement.clientWidth;
+            const windowHeight = innerHeight || document.documentElement.clientHeight;
+
+            if (rect.top <= 0) return new vec2(0, 1);
+            if (rect.left <= 0) return new vec2(1, 0);
+            if (rect.bottom >= windowHeight) return new vec2(0, -1);
+            if (rect.right >= windowWidth) return new vec2(-1, 0);
+            return null;
+        }
+        function tick() {
+            position.x += dir.x * speed;
+            position.y += dir.y * speed;
+            duck.style.left = position.x + "px";
+            duck.style.top = position.y + "px";
+            const normal = isTouchingEdge(duck);
+            if (normal !== null) {
+                const dot = dir.x * normal.x + dir.y * normal.y;
+                dir.x = dir.x - 2 * dot * normal.x;
+                dir.y = dir.y - 2 * dot * normal.y;
+                speed += 0.1;
+            }
+            requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+    </script>
+</body>
+</html>
