@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html>
     <head>
-
-        <title>Letsygo - Flappy  Bird</title>
-        <link rel="icon" type="image/x-icon" href="https://upload.wikimedia.org/wikipedia/en/d/d0/Dogecoin_Logo.png">
-
+        <title>FireDasher - Flapper</title>
+        <link rel="icon" type="image/x-icon" href="/assets/favicon.jpeg">
     </head>
-
-    <body style="overflow:hidden; cursor:none; margin:0;" bgcolor="lightcyan">
-        <canvas id="game"></canvas>
-        <script src="flapper.js"></script>
+    <body style="overflow:hidden; margin:0; background-color: lightcyan;">
+		<div id="pauseScreen" style="position: fixed; left: 0; top: 0; width: 100%; height: 100%; background-color: #00000080; color: white; text-align: center; font-family: sans-serif; display: none;">
+			<h1>Paused</h1>
+		</div>
+        <canvas id="game" style="cursor: none;"></canvas>
+        <script src="index.js"></script>
     </body>
-
 </html>
