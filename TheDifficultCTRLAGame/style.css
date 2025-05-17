@@ -1,0 +1,52 @@
+html {
+	height: 100%;
+}
+body {
+	height: 100%;
+	overflow: hidden;
+	background: linear-gradient(#2651DE, #1E00A3);
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-evenly;
+}
+@keyframes rotateAnimation {
+	0% {
+		rotate: -10deg;
+	}
+	50% {
+		rotate: 10deg;
+	}
+	100% {
+		rotate: -10deg;
+	}
+}
+#nextKey {
+	font-family: system-ui, -apple-system, sans-serif;
+	color: white;
+	font-size: 50px;
+	margin: 0;
+}
+#score {
+	font-family: system-ui, -apple-system, sans-serif;
+	color: white;
+	font-size: 200px;
+	margin: 0;
+	animation: rotateAnimation 2s infinite;
+}
+#message {
+	font-family: system-ui, -apple-system, sans-serif;
+	color: white;
+	font-size: 50px;
+	margin: 0;
+}
+#bestScore {
+	position: fixed;
+	left: 10px;
+	top: 10px;
+	font-family: system-ui, -apple-system, sans-serif;
+	color: white;
+	font-size: 24px;
+	margin: 0;
+}
