@@ -40,12 +40,12 @@ onbeforeunload = ()=>{
 	return "you might loose progress or something";
 };
 
-function tick() {
+function tick(timeScale) {
 	// This runs every frame
 	
 	// Player
-	pos += speed;
-	speed += 0.4;
+	pos += speed * timeScale;
+	speed += 0.4 * timeScale;
 
 	// Checking for death
 	if (canvas.height - pos > canvas.height || canvas.height - pos < 0) {
@@ -57,7 +57,7 @@ function tick() {
 	// Pipes
 	pipes.forEach((pipe, pipeidx)=>{
 		// Moving the pipes
-		pipe.x -= scrollSpeed;
+		pipe.x -= scrollSpeed * timeScale;
 
 		if (pipe.x < -50) {
 			delete pipes[pipeidx];
@@ -78,7 +78,7 @@ function tick() {
 	});
 
 	// Summon Pipes
-	pipesSummoningCooldown--;
+	pipesSummoningCooldown -= timeScale;
 	if (pipesSummoningCooldown <= 0) {
 		pipesSummoningCooldown = 60;
 		summonPipe();
@@ -168,8 +168,11 @@ function reset() {
 	score = 0;
 }
 
-function loop() {
-	if (!gamePaused) tick();
+let lastTime = performance.now();
+function loop(currentTime) {
+	const timeScale = (currentTime - lastTime) * 0.06;
+	lastTime = currentTime;
+	if (!gamePaused) tick(timeScale);
 	render();
 	requestAnimationFrame(loop);
 }
