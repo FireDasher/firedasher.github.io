@@ -5,35 +5,40 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
     margin: 0;
 }
+img {
+    user-drag: none;
+    -webkit-user-drag: none;
+}
+a {
+    color: aqua;
+}
 .applist {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
-img {
-    user-drag: none;
-    -webkit-user-drag: none;
-}
-.app img {
+.appimg {
     border: 2px solid white;
     box-shadow: 0 0 40px 5px white;
     border-radius: 10px;
     cursor: pointer;
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 300px;
     height: 150px;
     margin: 50px;
     transition: transform ease-out 0.2s;
 }
-.app, .link {
-    img:hover {
+.appimg, .linkimg {
+    &:hover {
         transform: scale(110%);
     }
-    img:active {
+    &:active {
         transform: scale(120%);
     }
 }
-.link img {
+.linkimg {
     border: 2px solid white;
     box-shadow: 0 0 20px 5px white;
     border-radius: 10px;

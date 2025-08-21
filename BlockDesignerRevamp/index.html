@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Block Designer Converter</title>
+    <style>
+        body {
+            background-color: #0d1117;
+            color: white;
+            font-family: sans-serif;
+            overflow: hidden;
+        }
+        textarea {
+            background-color: black;
+            color: white;
+            font-family: monospace;
+            resize: none;
+            width: 100%;
+            height: calc(100% - 110px);
+        }
+        a {
+            color: aqua;
+        }
+        .panel {
+            border: 4px solid #FFF;
+            border-radius: 4px;
+            padding: 10px;
+            position: absolute;
+            
+            width: calc(50vw - 40px);
+            top: 50px;
+            height: calc(100vh - 100px);
+        }
+        #panel1 {
+            left: 10px;
+        }
+        #panel2 {
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2"></script>
+    <p>Converts blocks made in <a href="https://codecrafted.net/blockdesigner" target="_blank">The CodeCrafted Block Designer</a> from 1.12 to 1.21.8+.</p>
+    <div class="panel" id="panel1">
+        <p>Share block Url: </p>
+        <textarea id="url"></textarea>
+        <p>Generate give command <input type="checkbox" id="give" /></p>
+    </div>
+    <div class="panel" id="panel2">
+        <p>Output command: </p>
+        <textarea readonly id="cmd"></textarea>
+        <p><button id="copy">Copy Command</button> <a href="CodeCrafted_BlockThing_Revamp.zip" download>Download Resource Pack</a></p>
+    </div>
+    <script src="converter.js"></script>
+</body>
+</html>

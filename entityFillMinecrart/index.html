@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entity fill</title>
+    <style>
+        body {
+            background-color: #0d1117;
+            color: white;
+            font-family: sans-serif;
+            overflow: hidden;
+        }
+        textarea {
+            background-color: black;
+            color: white;
+            font-family: monospace;
+            width: 100%;
+            height: calc(100% - 100px);
+        }
+        .panel {
+            border: 4px solid #FFF;
+            border-radius: 4px;
+            padding: 10px;
+            position: absolute;
+            
+            width: calc(50vw - 40px);
+            top: 75px;
+            height: calc(100vh - 125px);
+        }
+        #panel1 {
+            left: 10px;
+        }
+        #panel2 {
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2"></script>
+    <h1>Entity Fill</h1>
+    <div class="panel" id="panel1">
+        <h2>Input</h2>
+        <p>Entity: <input type="text" id="fillentity"></p>
+        <p>Entity NBT: <input type="text" id="fillentitynbt"></p>
+        <p>From XYZ: ~ ~ ~</p>
+        <p>To XYZ: <input type="text" id="toxyz"></p>
+    </div>
+    <div class="panel" id="panel2">
+        <h2>Output</h2>
+        <textarea id="cmdoutput" readonly></textarea>
+        <button id="copycmd">Copy Command</button>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>

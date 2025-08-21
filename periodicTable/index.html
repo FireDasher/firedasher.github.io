@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text to period table converter</title>
+    <style>
+        body {
+            background-color: #0d1117;
+            color: white;
+            font-family: sans-serif;
+            overflow: hidden;
+            padding: 20px;
+        }
+        table, th, td {
+            border:1px solid white;
+        }
+    </style>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2"></script>
+    <p>Text: <input type="text" id="input"></p>
+    <p>Period Table:</p>
+    <table id="output"></table>
+    <p><button id="csym">Copy Symbols</button> <button id="cele">Copy Elements</button> <button id="call">Copy All</button></p>
+    <script src="index.js"></script>
+</body>
+</html>
