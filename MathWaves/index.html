@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Waves</title>
+    <link rel="icon" type="image/png" href="/assets/favicon.png" />
+    <style>
+        body {
+            background-color: #0d1117;
+            color: #FFF;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            padding: 20px;
+        }
+        canvas {
+            border: 2px solid #FFF;
+        }
+        textarea {
+            background-color: #0d1117;
+            color: #FFF;
+            font-family: Arial, sans-serif;
+            width: 100%;
+        }
+        input[type="text"], input[type="number"] {
+            background-color: #0d1117;
+            color: #FFF;
+            font-family: Arial, sans-serif;
+            outline: 1px solid #FFF;
+        }
+    </style>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/mathjs/lib/browser/math.js"></script>
+    <script src="wav.js"></script>
+    <p>Math: <span id="error"></span></p>
+    <textarea id="expression"></textarea>
+    <p>Duration: <input type="number" id="duration" value="0.5"></p>
+    <p><button id="play">Play</button> <button id="stop">Stop</button> <button id="download">Download</button> Volume: <input type="range" id="volume" min="0" max="1" step="0.01" value="0.5"></p>
+    <p>WaveForm: Resolution: <input type="range" id="resolution" min="0" max="1" step="0.01" value="0.5"> Controls: scroll wheel - zoom, left-click drag - pan</p>
+    <canvas id="waveform"></canvas>
+    <script src="index.js"></script>
+</body>
+</html>
