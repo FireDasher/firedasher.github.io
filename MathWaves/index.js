@@ -40,6 +40,8 @@ function compileSound() {
 }
 
 function playSound() {
+    if (source) source.stop();
+
     source = actx.createBufferSource();
     sourceVolume = actx.createGain();
 
@@ -86,7 +88,7 @@ function setSize() {
     canvas.height = window.innerHeight - rect.top - 20;
 }
 setSize();
-//window.addEventListener("resize", setSize);
+window.addEventListener("resize", setSize);
 
 let zoom = 1;
 let pan = 0;
@@ -132,8 +134,7 @@ function render() {
     deltaTime = time - lastTime;
     lastTime = time;
 
-    //ctx.clearRect(0, 0, canvas.width, canvas.height);
-    setSize();
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     ctx.fillStyle = "#FFF";
     ctx.font = "16px Arial, sans-serif"
@@ -160,10 +161,11 @@ function render() {
     ctx.lineTo(toCanvas(1), canvas.height);
     ctx.stroke();
 
-    if (startTime > 0) {
-        const playBackMarkerX = toCanvas(Math.max(0, Math.min(1, ((time - startTime)*0.001 / duration))));
-        ctx.lineWidth = 2;
-        ctx.strokeStyle = "#00F";
+    const t = ((time - startTime)*0.001 / duration);
+    if (t > 0 && t < 1) {
+        const playBackMarkerX = toCanvas(t);
+        ctx.lineWidth = 4;
+        ctx.strokeStyle = "#0FF";
         ctx.beginPath();
         ctx.moveTo(playBackMarkerX, 0);
         ctx.lineTo(playBackMarkerX, canvas.height);
