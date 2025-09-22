@@ -10,6 +10,8 @@ for(let i = 0; i < cells.length; i++) {
 let scrollx = 0, scrolly = 0;
 let zoom = 1;
 
+let keysThatAreDown = {};
+
 // get image of tile from tile name
 function tNameImg(tname) {
     return images[cells.indexOf(tname)];
@@ -44,35 +46,44 @@ function render() {
     }
 }
 
+let lasttime = Date.now();
 function tick() {
+    const time = Date.now();
+    const dt = (time - lasttime) * 0.001;
     render();
+    if (keysThatAreDown["w"]) {
+        scrolly += (600 / zoom) * dt;
+    }
+    if (keysThatAreDown["d"]) {
+        scrollx += (600 / zoom) * dt;
+    }
+    if (keysThatAreDown["s"]) {
+        scrolly -= (600 / zoom) * dt;
+    }
+    if (keysThatAreDown["a"]) {
+        scrollx -= (600 / zoom) * dt;
+    }
+    lasttime = time;
     requestAnimationFrame(tick);
 }
 
 document.onwheel = function(e) {
-    if (e.ctrlKey || e.metaKey) {
-        if (zoom < 0.01) {
-            zoom += e.deltaY * 0.001;
-        } else {
-            zoom += e.deltaY * zoom * 0.01;
-        }
-        if (zoom < 0) {
-            zoom = 0;
-        }
-        if (zoom > 10) {
-            zoom = 10;
-        }
-    } else {
-        scrollx += e.deltaX;
-        scrolly -= e.deltaY;
+    zoom -= e.deltaY * zoom * 0.001;
+    if (zoom < 0) {
+        zoom = 0;
+    }
+    if (zoom > 10) {
+        zoom = 10;
     }
 }
 
-document.onkeydown = function (e) {
-    if (e.key == 'z') {
-        zoom = 1;
-    }
-}
+document.addEventListener("keydown", function (e) {
+    keysThatAreDown[e.key] = true;
+});
+
+document.addEventListener("keyup", function (e) {
+    keysThatAreDown[e.key] = false;
+});
 
 /*document.onmousemove = function(e) {
     const ix = Math.round((e.clientX + scrollx) / 32);

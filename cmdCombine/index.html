@@ -18,11 +18,12 @@
     </style>
 </head>
 <body>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2"></script>
     <textarea id="input" rows="20" cols="80" placeholder="Type your commands here!"></textarea>
     <textarea readonly id="output" rows="20" cols="80" placeholder="Your output command will go here!"></textarea>
     <br>
     <input type="checkbox" id="delorig" />Delete original command block on use
-    <button class="copycmd" onclick="navigator.clipboard.writeText(output.value);">Copy Command</button>
+    <button id="copycmd">Copy Command</button>
     <p>Type your commands in the left box, seperated by newlines. Your output will go in the right box, so you can copy & paste that into a command block in minecraft. Do not try to paste the command into the chat, the command will be too long to work in the chat. Command block command: /give @s command_block</p>
     <script src="main.js"></script>
 </body>

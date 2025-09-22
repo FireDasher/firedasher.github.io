@@ -12,12 +12,23 @@
             background-color: white;
             width: calc(50vw - 18px);
         }
+        label[for="lines"] {
+            position: absolute;
+            left: 16px;
+        }
+        label[for="image"] {
+            position: absolute;
+            left: 50vw;
+        }
     </style>
 </head>
 <body>
-    <input type="file" multiple id="files">
-    <input type="number" value="20" id="div">
+    <label for="files">Choose frames images: </label><input type="file" multiple id="files">
+    <label for="div">Division: </label><input type="number" value="20" id="div">
     <br><br>
+    <label for="lines">Lines image: </label>
+    <label for="image">Image: </label>
+    <br>
     <canvas id="lines"></canvas>
     <canvas id="image"></canvas>
     <script src="creator.js"></script>
