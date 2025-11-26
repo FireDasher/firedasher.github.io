@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Fourier drawing</title>
+	<link rel="icon" type="image/png" href="/assets/favicon.png" />
+	<style>
+		body {
+			background-color: #123;
+			color: #FFF;
+			font-family: system-ui, sans-serif;
+		}
+		canvas {
+			border: 2px solid #FFF;
+			border-radius: 2px;
+		}
+		#speed {
+			width: 1280px;
+		}
+	</style>
+</head>
+<body>
+	<p>Draw something</p>
+	<canvas width="1280" height="720" id="the"></canvas>
+	<br>
+	<button onclick="drawnPoints = []; vectors = []; trail = []">Clear</button>
+	<button onclick="process(); trail = []; time = 0">Process</button>
+	<p>Amount of arrows <input type="number" id="numarrows" value="50"></p>
+	<p>Follow <input type="checkbox" id="follow"></p>
+	<p>Speed <input type="range" id="speed" min="0" max="1" step="0.01" value="0.1"></p>
+	<script src="main.js"></script>
+</body>
+</html>
