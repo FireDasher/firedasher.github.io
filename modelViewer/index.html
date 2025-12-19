@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>3D Model Viewer</title>
+	<link rel="icon" type="image/png" href="/assets/favicon.png" />
+
+	<style>
+		html, body {
+			width: 100%;
+			height: 100%;
+			margin: 0px;
+			padding: 0px;
+			overflow: hidden;
+		}
+		#canvas {
+			width: 100%;
+			height: 100%;
+		}
+		#file-upload {
+			display: none;
+		}
+		#file-upload-button {
+			position: absolute;
+			right: 0;
+			bottom: 0;
+			color: #fff;
+			font-family: system-ui, sans-serif;
+			cursor: pointer;
+			background-color: #222;
+			padding: 10px;
+		}
+		#file-upload-button:hover {
+			background-color: #444;
+		}
+	</style>
+
+	<script src="https://cdn.babylonjs.com/babylon.js"></script>
+	<script src="https://cdn.babylonjs.com/loaders/babylonjs.loaders.min.js"></script>
+</head>
+<body>
+	<canvas id="canvas"></canvas>
+	<input type="file" id="file-upload">
+	<label for="file-upload" id="file-upload-button">
+		<svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 1024 1024" width="64" height="64">
+			<path d="M400 317.7h73.9V656c0 4.4 3.6 8 8 8h60c4.4 0 8-3.6 8-8V317.7H624c6.7 0 10.4-7.7 6.3-12.9L518.3 163a8 8 0 0 0-12.6 0l-112 141.7c-4.1 5.3-.4 13 6.3 13zM878 626h-60c-4.4 0-8 3.6-8 8v154H214V634c0-4.4-3.6-8-8-8h-60c-4.4 0-8 3.6-8 8v198c0 17.7 14.3 32 32 32h684c17.7 0 32-14.3 32-32V634c0-4.4-3.6-8-8-8z" fill="#fff"/>
+		</svg>
+	</label>
+	<script src="index.js"></script>
+</body>
+</html>
