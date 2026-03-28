@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Spritesheet Generator</title>
+	<style>
+		body {
+			background-color: #123;
+			color: #fff;
+			font-family: system-ui, sans-serif;
+			padding: 20px;
+			margin: 0;
+		}
+		table {
+			border: 2px solid white;
+			margin: 20px 0;
+		}
+		td {
+			border: 2px solid white;
+			width: 100px;
+			height: 100px;
+		}
+		input {
+			background-color: transparent;
+			color: white;
+		}
+		input::file-selector-button, button {
+			background-color: #234;
+			color: #fff;
+			font-family: system-ui, sans-serif;
+		}
+		input[type=file], button {
+			cursor: pointer;
+		}
+		#renderCanvas {
+			display: none;
+		}
+		img {
+			image-rendering: pixelated;
+		}
+		#loadProject {
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="renderCanvas"></canvas>
+	<p>Choose Images: <input type="file" multiple id="filesChooser" accept="image/*" /></p>
+	<p>Cell Size: <input type="number" id="cellSize" value="16" /></p>
+	<button onclick="addRow()">Add Row</button>
+	<button onclick="addColumn()">Add Column</button>
+	<button onclick="removeRow(event)">Remove Row</button>
+	<button onclick="removeColumn(event)">Remove Column</button>
+	<table id="theTable">
+		<tbody>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+		</tbody>
+	</table>
+
+	<div id="pallette"></div>
+
+	<button onclick="exportSpritesheet()">Export spritesheet</button>
+	<button onclick="saveProject()">Save project</button>
+	<button onclick="loadProjectButton.click()">Load project</button>
+	<input type="file" id="loadProject" accept=".sgp" />
+
+	<script src="main.js"></script>
+</body>
+</html>
