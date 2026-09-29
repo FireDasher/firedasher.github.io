@@ -19,7 +19,7 @@ a {
 }
 .appimg {
     border: 2px solid white;
-    box-shadow: 0 0 40px 5px white;
+    box-shadow: 0 0 10px 5px white;
     border-radius: 10px;
     cursor: pointer;
     display: flex;
@@ -40,7 +40,7 @@ a {
 }
 .linkimg {
     border: 2px solid white;
-    box-shadow: 0 0 20px 5px white;
+    box-shadow: 0 0 5px 5px white;
     border-radius: 10px;
     cursor: pointer;
     width: 64px;
